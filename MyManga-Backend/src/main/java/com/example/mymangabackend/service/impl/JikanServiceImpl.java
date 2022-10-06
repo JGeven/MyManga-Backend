@@ -1,8 +1,8 @@
 package com.example.mymangabackend.service.impl;
 
 import com.example.mymangabackend.model.Manga;
+import com.example.mymangabackend.model.Statistics;
 import com.example.mymangabackend.wrapper.data;
-import com.example.mymangabackend.wrapper.details;
 import com.example.mymangabackend.service.JikanService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -37,8 +37,21 @@ public class JikanServiceImpl implements JikanService {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> entity = null;
 
-        ResponseEntity<details> manga = restTemplate.exchange(baseURL+"/manga/"+mal_id, HttpMethod.GET, entity, details.class);
+        // Obtaining the details of a manga fully by ID
+        ResponseEntity<Manga> manga = restTemplate.exchange(baseURL+"/manga/"+mal_id, HttpMethod.GET, entity, Manga.class);
         return manga.getBody().getData();
+    }
+
+    @Override
+    public Statistics getStaticsOfManga(int mal_id) {
+
+        // Creating a rest template and entity for later use
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> entity = null;
+
+        // Getting the statistics of a manga by ID
+        ResponseEntity<Statistics> statistics = restTemplate.exchange(baseURL+"/manga/"+mal_id+"/statistics", HttpMethod.GET, entity, Statistics.class);
+        return statistics.getBody().getData();
     }
 
 }
