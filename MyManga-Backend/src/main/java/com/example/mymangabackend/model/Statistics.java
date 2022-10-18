@@ -28,8 +28,7 @@ public class Statistics {
 
     }
 
-    public Statistics(Statistics data, int reading, int completed, int on_hold, int dropped, int plan_to_read, int total) {
-        this.data = data;
+    public Statistics(int reading, int completed, int on_hold, int dropped, int plan_to_read, int total) {
         this.reading = reading;
         this.completed = completed;
         this.on_hold = on_hold;
