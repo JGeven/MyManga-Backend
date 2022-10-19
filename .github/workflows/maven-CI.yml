@@ -25,3 +25,5 @@ jobs:
         
     - name: Build with Maven
       run: mvn clean install --file MyManga-Backend/pom.xml
+    - name: Build with Maven
+      run: mvn clean install --file MyManga-UserSystem/pom.xml
