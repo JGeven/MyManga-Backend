@@ -1,4 +1,4 @@
 FROM openjdk:18
 EXPOSE 8080
-ADD target/mymanga-docker.jar mymanga-docker.jar
-ENTRYPOINT ["java","-jar","mymanga-docker.jar"]
+ADD target/mymanga-manga-docker.jar mymanga-manga-docker.jar
+ENTRYPOINT ["java","-jar","mymanga-manga-docker.jar"]

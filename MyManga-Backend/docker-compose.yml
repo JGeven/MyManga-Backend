@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: mymanga-docker.jar
+    image: mymanga-manga-docker.jar
     container_name: backend
     depends_on:
       - mysql
