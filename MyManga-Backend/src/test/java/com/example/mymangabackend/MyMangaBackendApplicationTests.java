@@ -6,7 +6,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
-@TestPropertySource("classpath:application.properties")
 class MyMangaBackendApplicationTests {
 
 	@Test
