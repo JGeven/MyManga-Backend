@@ -21,20 +21,19 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Get all users (Currently for testing purposes)
-    // Later Postmapping Register
+    // Register user, using "users" mapping since it is part of the crud of users
     @PostMapping("/users")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User dbUser = userService.registerUser(user);
         return ResponseEntity.ok(dbUser);
     }
 
-    // login
+    // Get from database
     @GetMapping("/users")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
-        User dbUser = userService.loginUser(user.getEmail(),user.getPassword());
-        return ResponseEntity.ok(dbUser);
+    public List<User> getUsers() {
+       return userService.getAllUsers();
     }
+
 
     // Delete user from database
     @DeleteMapping("/users")
@@ -50,6 +49,13 @@ public class UserController {
     @PutMapping("/users")
     public ResponseEntity<User> updateUser(@RequestParam Long id, @RequestBody User user) {
         User dbUser = userService.updateUser(id,user);
+        return ResponseEntity.ok(dbUser);
+    }
+
+    // login under a different mapping since is a different functionality
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody User user) {
+        User dbUser = userService.loginUser(user.getEmail(),user.getPassword());
         return ResponseEntity.ok(dbUser);
     }
 }
