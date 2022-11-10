@@ -28,7 +28,6 @@ public class UserController {
     // Register user, using "users" mapping since it is part of the crud of users
     @PostMapping("/users")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User dbUser = userService.registerUser(user);
         return ResponseEntity.ok(dbUser);
     }
