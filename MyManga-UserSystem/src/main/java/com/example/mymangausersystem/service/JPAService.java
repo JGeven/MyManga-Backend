@@ -1,6 +1,6 @@
 package com.example.mymangausersystem.service;
 
-import com.example.mymangausersystem.model.SecurityUser;
+import com.example.mymangausersystem.model.support.SecurityUser;
 import com.example.mymangausersystem.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

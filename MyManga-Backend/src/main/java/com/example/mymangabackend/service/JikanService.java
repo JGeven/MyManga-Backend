@@ -2,7 +2,6 @@ package com.example.mymangabackend.service;
 
 import com.example.mymangabackend.model.Manga;
 import com.example.mymangabackend.model.Statistics;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

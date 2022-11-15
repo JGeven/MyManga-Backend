@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Manga {
 
-    //test
+
     @JsonProperty("data")
     Manga data;
     @JsonProperty("mal_id")

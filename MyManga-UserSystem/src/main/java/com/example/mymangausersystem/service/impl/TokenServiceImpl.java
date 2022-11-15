@@ -1,6 +1,6 @@
 package com.example.mymangausersystem.service.impl;
 
-import com.example.mymangausersystem.model.User;
+import com.example.mymangausersystem.model.main.User;
 import com.example.mymangausersystem.repository.UserRepository;
 import com.example.mymangausersystem.service.TokenService;
 import org.springframework.security.core.Authentication;

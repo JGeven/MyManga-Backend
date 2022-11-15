@@ -1,5 +1,6 @@
-package com.example.mymangausersystem.model;
+package com.example.mymangausersystem.model.support;
 
+import com.example.mymangausersystem.model.main.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

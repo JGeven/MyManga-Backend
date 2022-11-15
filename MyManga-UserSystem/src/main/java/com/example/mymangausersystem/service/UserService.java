@@ -1,10 +1,11 @@
 package com.example.mymangausersystem.service;
 
-import com.example.mymangausersystem.model.User;
+import com.example.mymangausersystem.model.main.User;
 
 import java.util.List;
 
 public interface UserService {
+
     // Get all users (currently for testing purposes)
     List<User> getAllUsers();
 

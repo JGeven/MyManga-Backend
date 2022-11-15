@@ -1,4 +1,4 @@
-package com.example.mymangausersystem.model;
+package com.example.mymangausersystem.model.main;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +24,8 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+
 
     public User() {
 
