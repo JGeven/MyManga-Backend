@@ -1,6 +1,6 @@
 package com.example.mymangausersystem.controller;
 
-import com.example.mymangausersystem.model.User;
+import com.example.mymangausersystem.model.main.User;
 import com.example.mymangausersystem.service.UserService;
 import org.junit.jupiter.api.Test;
 

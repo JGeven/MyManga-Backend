@@ -1,45 +1,50 @@
 package com.example.mymangausersystem.controller;
 
-import com.example.mymangausersystem.model.User;
+import com.example.mymangausersystem.model.main.User;
 import com.example.mymangausersystem.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("api/v1")
 public class UserController {
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
     UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    // Get all users (Currently for testing purposes)
-    // Later Postmapping Register
+    // Register/Save user to database
     @PostMapping("/users")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User dbUser = userService.registerUser(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        User dbUser = new User(user.getUserName(), user.getEmail(), encodedPassword);
+        userService.registerUser(dbUser);
         return ResponseEntity.ok(dbUser);
     }
 
-    // login
+    // Get user from database
     @GetMapping("/users")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
-        User dbUser = userService.loginUser(user.getEmail(),user.getPassword());
-        return ResponseEntity.ok(dbUser);
+    public ResponseEntity<User> getUser(@RequestParam long userID) {
+        User user = userService.getUserByID(userID);
+        return ResponseEntity.ok(user);
     }
 
     // Delete user from database
     @DeleteMapping("/users")
-    public ResponseEntity<Map<String, Boolean>> deleteUser(@RequestParam Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@RequestParam Long userID) {
+        userService.deleteUser(userID);
 
         Map<String, Boolean> response = new HashMap<>();
         response.put("Deleted", Boolean.TRUE);
@@ -48,8 +53,8 @@ public class UserController {
 
     // Update user from database
     @PutMapping("/users")
-    public ResponseEntity<User> updateUser(@RequestParam Long id, @RequestBody User user) {
-        User dbUser = userService.updateUser(id,user);
+    public ResponseEntity<User> updateUser(@RequestParam Long userID, @RequestBody User user) {
+        User dbUser = userService.updateUser(userID,user);
         return ResponseEntity.ok(dbUser);
     }
 }
