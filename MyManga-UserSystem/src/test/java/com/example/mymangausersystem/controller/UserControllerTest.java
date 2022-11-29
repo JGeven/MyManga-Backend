@@ -20,7 +20,7 @@ class UserControllerTest {
         when(mock.registerUser(user)).thenReturn(expected);
 
         //Act
-        User actual = controller.registerUser(user).getBody();
+        User actual = controller.registerUser(expected).getBody();
 
         //Assert
         assertEquals(expected, actual);
