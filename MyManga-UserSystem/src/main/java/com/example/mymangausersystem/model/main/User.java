@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +27,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToMany
+    private List<MangaUserLink> favoriteManga = new ArrayList<>();
 
 
     public User() {

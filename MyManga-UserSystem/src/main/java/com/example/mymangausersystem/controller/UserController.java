@@ -4,6 +4,7 @@ import com.example.mymangausersystem.model.main.User;
 import com.example.mymangausersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,9 @@ public class UserController {
     // Register/Save user to database
     @PostMapping("/users")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User dbUser = userService.registerUser(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        User dbUser = new User(user.getUserName(), user.getEmail(), encodedPassword);
+        userService.registerUser(dbUser);
         return ResponseEntity.ok(dbUser);
     }
 

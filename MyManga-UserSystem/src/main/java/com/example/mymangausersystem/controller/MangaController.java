@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/manga")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class MangaController {
 
     private final LinkService linkService;
@@ -36,9 +36,7 @@ public class MangaController {
 
     // Get manga from Manga backend
     @GetMapping
-    public List<Manga> getMangaByUserID(@RequestParam Long userID) {
-        List<Manga> manga = mangaService.getMangabyUserID(userID);
-        return linkService.getMangaByMangaID(manga);
-
+    public List<Manga> getFavoriteMangaByUserID(@RequestParam Long userID) {
+        return mangaService.getMangabyUserID(userID);
     }
 }

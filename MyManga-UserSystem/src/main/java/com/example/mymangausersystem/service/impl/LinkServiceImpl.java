@@ -12,6 +12,8 @@ import java.util.List;
 @Service
 public class LinkServiceImpl implements LinkService {
 
+
+    // Wordt niet meer gebruikt
     @Override
     public List<Manga> getMangaByMangaID(List<Manga> dbManga) {
 

@@ -12,10 +12,11 @@ public class MangaUserLink {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long linkID;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Long userID;
+    private User user;
 
     @Column(name = "manga_id")
     private Long mangaID;
