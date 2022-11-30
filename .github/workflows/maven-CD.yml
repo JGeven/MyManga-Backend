@@ -24,11 +24,11 @@ jobs:
 
     - name: Build Manga-Backend with Maven
       run: mvn clean install --file MyManga-Backend/pom.xml
-    
+
     - name: Build User-Backend with Maven
       run: mvn clean install --file MyManga-UserSystem/pom.xml
 
-     
+
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
