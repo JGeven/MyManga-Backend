@@ -1,14 +1,15 @@
 version: '3'
 services:
   backend:
-    image: mymanga-manga-docker.jar
+    image: jgeven/mymanga:latest
     container_name: backend
     depends_on:
       - mysql
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mymanga_management_system?useSSL=false
+      - spring_datasource_url=jdbc:mysql://mysql:3306/mymanga_management_system?useSSL=false
+      - spring.datasource.hikari.initialization-fail-timeout=0
   mysql:
     container_name: mysqldatabase
     image: mysql:5.5.57
