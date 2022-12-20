@@ -27,10 +27,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany
-    private List<MangaUserLink> favoriteManga = new ArrayList<>();
-
-
     public User() {
 
     }
