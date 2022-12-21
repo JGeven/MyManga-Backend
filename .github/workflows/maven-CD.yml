@@ -1,0 +1,50 @@
+name: Spring boot CD flow
+
+on:
+  push:
+    branches: [ "Release" ]
+  pull_request:
+    branches: [ "Release" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 18
+      uses: actions/setup-java@v3
+      with:
+        java-version: '18'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build Manga-Backend with Maven
+      run: mvn clean install --file MyManga-Backend/pom.xml
+
+    - name: Build User-Backend with Maven
+      run: mvn clean install --file MyManga-UserSystem/pom.xml
+
+
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: jgeven/mymanga-manga
+        tags: latest
+        registry: docker.io
+        dockerfile: MyManga-Backend/Dockerfile
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: jgeven/mymanga-user
+        tags: latest
+        registry: docker.io
+        dockerfile: MyManga-UserSystem/Dockerfile
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
