@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests(auth -> auth
-                        .antMatchers(HttpMethod.POST).permitAll()
+                        .antMatchers(HttpMethod.POST,"/token").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .userDetailsService(jpaService)
