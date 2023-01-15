@@ -1,12 +1,22 @@
 version: '3'
 services:
-  backend:
-    image: jgeven/mymanga:latest
-    container_name: backend
+  backend-manga:
+    image: jgeven/mymanga-manga:latest
+    container_name: backend-manga
     depends_on:
       - mysql
     ports:
       - "8080:8080"
+    environment:
+      - spring_datasource_url=jdbc:mysql://mysql:3306/mymanga_management_system?useSSL=false
+      - spring.datasource.hikari.initialization-fail-timeout=0
+  backend-user:
+    image: jgeven/mymanga-user:latest
+    container_name: backend-user
+    depends_on:
+      - mysql
+    ports:
+      - "8090:8090"
     environment:
       - spring_datasource_url=jdbc:mysql://mysql:3306/mymanga_management_system?useSSL=false
       - spring.datasource.hikari.initialization-fail-timeout=0
